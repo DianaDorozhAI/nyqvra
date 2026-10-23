@@ -1,0 +1,8 @@
+EFF Large Wordlist (2016), by Electronic Frontier Foundation.
+Source: https://www.eff.org/files/2016/07/18/eff_large_wordlist.txt
+Project: https://www.eff.org/dice
+License: Creative Commons Attribution 3.0 United States (CC BY 3.0 US).
+Policy: https://www.eff.org/copyright
+License: https://creativecommons.org/licenses/by/3.0/us/
+The words are unchanged; numeric dice indices were removed for embedding.
+EFF does not endorse NYQVRA. Generated phrases are not wallet seed phrases.

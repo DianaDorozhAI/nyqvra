@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="NYQVRA — генератор случайных паролей. На вашем устройстве, без аккаунта и сохранения паролей."
+    />
+    <meta name="theme-color" content="#121015" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none'"
+    />
+    <title>NYQVRA — генератор паролей</title>
+    <link rel="icon" href="src/assets/nyqvra-mark.svg" type="image/svg+xml" />
+    <link
+      rel="preload"
+      href="src/assets/fonts/Manrope.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="src/assets/nyqvra-armor-lilac-v2.png"
+      as="image"
+    />
+    <link rel="stylesheet" href="src/engineering.css?v=0.2.0-3" />
+  </head>
+  <body>
+    <a class="skip-link" href="#generator" data-t="skip"
+      >Перейти к генератору</a
+    >
+    <div class="armor-scene" aria-hidden="true">
+      <picture
+        ><source
+          media="(min-aspect-ratio:17/10)"
+          srcset="src/assets/nyqvra-armor-lilac-wide-v3.png" />
+        <img
+          src="src/assets/nyqvra-armor-lilac-v2.png"
+          alt=""
+          fetchpriority="high"
+      /></picture>
+    </div>
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="brand" href="#generator" aria-label="NYQVRA">
+          <canvas
+            class="brand-mark"
+            data-orbit-mark
+            width="160"
+            height="160"
+            aria-hidden="true"
+          ></canvas>
+          <img
+            class="brand-wordmark"
+            src="src/assets/nyqvra-wordmark.svg"
+            alt="NYQVRA"
+            width="220"
+            height="30"
+          />
+        </a>
+        <div class="header-right">
+          <span class="local" data-t="local">Только на устройстве</span>
+          <div class="languages" role="group" aria-label="Язык / Language">
+            <button type="button" data-lang="ru" aria-pressed="true">RU</button>
+            <span aria-hidden="true">/</span>
+            <button type="button" data-lang="en" aria-pressed="false">
+              EN
+            </button>
+          </div>
+        </div>
+      </header>
+      <main class="workspace">
+        <div class="intro">
+          <p class="eyebrow" data-t="eyebrow">Без аккаунта и облака</p>
+          <h1 data-t="heading">Генератор паролей</h1>
+          <p class="intro-description" data-t="intro">
+            Задайте длину и набор символов. Стойкость к подбору оценим сразу.
+          </p>
+          <p class="mechanism-note" data-t="mechanism">
+            Работает на вашем устройстве. Без отправки результата в сеть.
+          </p>
+        </div>
+        <div class="instrument-area">
+          <span class="image-note" aria-hidden="true">Web Crypto</span>
+          <span class="lower-note" aria-hidden="true" data-t="noStorage"
+            >Без сохранения</span
+          >
+          <div class="panel-frame">
+            <section
+              class="panel"
+              id="generator"
+              tabindex="-1"
+              aria-labelledby="panel-title"
+            >
+              <div class="password-heading">
+                <h2 id="panel-title">
+                  <label for="password" data-t="password">Новый пароль</label>
+                </h2>
+                <div class="result-meta">
+                  <span id="result-length"></span
+                  ><button
+                    id="options-open"
+                    class="settings-button"
+                    type="button"
+                    aria-label="Дополнительные настройки"
+                  >
+                    <img
+                      class="icon"
+                      src="src/assets/icons/adjustments.svg"
+                      alt=""
+                    />
+                  </button>
+                </div>
+              </div>
+              <textarea
+                id="password"
+                readonly
+                rows="1"
+                wrap="soft"
+                spellcheck="false"
+                autocomplete="off"
+                autocapitalize="off"
+                aria-live="off"
+              ></textarea>
+              <div class="result-toolbar">
+                <div class="result-actions">
+                  <button
+                    class="text-action"
+                    id="visibility"
+                    type="button"
+                    aria-pressed="true"
+                  >
+                    <img
+                      id="visibility-icon"
+                      class="icon"
+                      src="src/assets/icons/eye-off.svg"
+                      alt=""
+                      aria-hidden="true"
+                    />
+                    <span id="visibility-label" class="sr-only">Скрыть</span>
+                  </button>
+                  <button id="copy" class="copy-button" type="button">
+                    <img
+                      id="copy-icon"
+                      class="icon"
+                      src="src/assets/icons/copy.svg"
+                      alt=""
+                      aria-hidden="true"
+                    />
+                    <span data-t="copy" class="sr-only">Скопировать</span>
+                  </button>
+                </div>
+                <div class="security-summary">
+                  <button id="model-open" class="rating-inline rating-button" type="button" aria-haspopup="dialog" aria-controls="models">
+                    <img
+                      id="rating-icon"
+                      class="icon"
+                      src="src/assets/icons/shield-check.svg"
+                      alt=""
+                      aria-hidden="true"
+                    /><strong id="strength"></strong>
+                    <img class="icon rating-info" src="src/assets/icons/info-circle.svg" alt="" aria-hidden="true">
+                  </button>
+                  <p id="resistance-basis" class="sr-only"></p>
+                </div>
+              </div>
+              <form id="form" novalidate>
+                <div class="settings">
+                  <div class="length-setting">
+                    <div class="length-label">
+                      <label for="length" data-t="length">Длина</label>
+                      <input
+                        id="length-number"
+                        type="number"
+                        min="8"
+                        max="128"
+                        step="1"
+                        value="24"
+                        inputmode="numeric"
+                        aria-label="Длина пароля"
+                        aria-describedby="error"
+                      />
+                    </div>
+                    <input
+                      id="length"
+                      type="range"
+                      min="8"
+                      max="128"
+                      step="1"
+                      value="24"
+                      aria-describedby="error"
+                    />
+                    <div class="range-caption" aria-hidden="true">
+                      <span>8</span><span>128</span>
+                    </div>
+                  </div>
+                  <fieldset>
+                    <legend data-t="characters">Разрешённые символы</legend>
+                    <div class="choices">
+                      <label
+                        ><input name="upper" type="checkbox" checked /><span
+                          >A–Z</span
+                        ></label
+                      >
+                      <label
+                        ><input name="lower" type="checkbox" checked /><span
+                          >a–z</span
+                        ></label
+                      >
+                      <label
+                        ><input name="numbers" type="checkbox" checked /><span
+                          >0–9</span
+                        ></label
+                      >
+                      <label
+                        ><input name="symbols" type="checkbox" checked /><span
+                          >!@#</span
+                        ></label
+                      >
+                    </div>
+                  </fieldset>
+                </div>
+                <p
+                  id="phrase-note"
+                  class="model-caption"
+                  hidden
+                  data-t="phraseNote"
+                >
+                  Случайные английские слова из списка EFF.
+                </p>
+                <p id="error" class="error" role="alert"></p>
+              </form>
+              <div class="panel-bottom">
+                <p
+                  class="status"
+                  id="status"
+                  role="status"
+                  aria-live="polite"
+                ></p>
+                <div class="generate-control">
+                  <button
+                    id="generate"
+                    class="brand-orbit"
+                    type="submit"
+                    form="form"
+                    aria-labelledby="generate-label"
+                  >
+                    <canvas
+                      id="particle-orb"
+                      data-orbit-mark
+                      width="160"
+                      height="160"
+                      aria-hidden="true"
+                    ></canvas>
+                  </button>
+                  <label id="generate-label" for="generate" data-t="generate"
+                    >Новый пароль</label
+                  >
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </main>
+      <footer class="site-footer">
+        <span data-t="footer">NYQVRA · 0.2.0</span>
+        <div class="footer-links">
+          <button
+            id="about-open"
+            class="text-action"
+            type="button"
+            data-t="how"
+          >
+            Как это работает
+          </button>
+          <a
+            href="https://github.com/DianaDorozhAI/nyqvra/releases/latest"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-t="downloadOffline"
+            >Скачать офлайн</a>
+          <a
+            href="https://github.com/DianaDorozhAI/nyqvra"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub — NYQVRA"
+            >GitHub
+            <img
+              class="icon"
+              src="src/assets/icons/arrow-up-right.svg"
+              alt=""
+              aria-hidden="true"
+          /></a>
+        </div>
+      </footer>
+    </div>
+    <dialog id="about" aria-labelledby="about-title">
+      <div class="dialog-heading">
+        <h2 id="about-title" data-t="how">Как это работает</h2>
+        <button
+          id="about-close"
+          class="icon-button"
+          type="button"
+          aria-label="Закрыть"
+        >
+          <img class="icon" src="src/assets/icons/x.svg" alt="" />
+        </button>
+      </div>
+      <p data-t="aboutLocal">
+        Пароль создаётся в браузере с помощью Web Crypto. NYQVRA не отправляет и
+        не сохраняет его.
+      </p>
+      <p data-t="aboutTypes">
+        Настройки определяют длину и доступные символы. Каждый включённый набор
+        разрешён, но не обязательно встретится в результате.
+      </p>
+      <p data-t="aboutSave">
+        После копирования сохраните пароль в своём менеджере паролей. Истории и
+        восстановления в NYQVRA нет.
+      </p>
+      <p class="dialog-note" data-t="aboutClipboard">
+        Скопированный пароль остаётся в системном буфере обмена.
+      </p>
+      <p class="dialog-note" data-t="aboutAudit">
+        Это модель безопасности, не независимый аудит. NYQVRA не создаёт
+        seed-фразы и приватные ключи.
+      </p>
+    </dialog>
+    <dialog id="options" aria-labelledby="options-title">
+      <div class="dialog-heading">
+        <h2 id="options-title" data-t="optionsTitle">Настройки генерации</h2>
+        <button
+          id="options-close"
+          class="icon-button"
+          type="button"
+          aria-label="Закрыть"
+        >
+          <img class="icon" src="src/assets/icons/x.svg" alt="" />
+        </button>
+      </div>
+      <div class="format-row">
+        <span data-t="format">Формат</span>
+        <div class="format-switch" role="group" aria-label="Формат / Format">
+          <button
+            type="button"
+            data-format="password"
+            aria-pressed="true"
+            data-t="formatPassword"
+          >
+            Пароль</button
+          ><button
+            type="button"
+            data-format="phrase"
+            aria-pressed="false"
+            data-t="formatPhrase"
+          >
+            Парольная фраза
+          </button>
+        </div>
+      </div>
+      <label class="each-setting"
+        ><input id="require-each" type="checkbox" /><span data-t="requireEach"
+          >Хотя бы один символ из каждого выбранного набора</span
+        ></label
+      >
+      <p class="dialog-note" data-t="optionsNote">
+        Изменения применятся при следующей генерации. Текущий результат не
+        изменится.
+      </p>
+    </dialog>
+    <dialog id="models" aria-labelledby="models-title">
+      <div class="dialog-heading">
+        <h2 id="models-title" data-t="why">Почему такая оценка?</h2>
+        <button
+          id="models-close"
+          class="icon-button"
+          type="button"
+          aria-label="Закрыть"
+        >
+          <img class="icon" src="src/assets/icons/x.svg" alt="" />
+        </button>
+      </div>
+      <div class="rating-verdict" id="rating-verdict">
+        <img
+          id="verdict-icon"
+          class="icon"
+          src="src/assets/icons/shield-check.svg"
+          alt=""
+          aria-hidden="true"
+        />
+        <div>
+          <strong id="verdict-title"></strong>
+          <p id="verdict-action"></p>
+        </div>
+      </div>
+      <p class="model-lead" id="model-explanation"></p>
+      <dl class="model-factors">
+        <div>
+          <dt data-t="factorLength">Длина</dt>
+          <dd id="model-length"></dd>
+        </div>
+        <div>
+          <dt data-t="factorMethod">Способ создания</dt>
+          <dd data-t="randomSelection">Случайный выбор</dd>
+        </div>
+      </dl>
+      <section class="threat-summary" aria-labelledby="threat-title">
+        <div class="threat-heading">
+          <h3 id="threat-title" data-t="threatTitle">
+            Один пароль · разные условия атаки
+          </h3>
+        </div>
+        <dl class="scenario-list">
+          <div>
+            <dt data-t="onlineTitle">Через форму входа</dt>
+            <dd id="rating-online">—</dd>
+            <span data-t="onlineHelp"
+              >Попытки зависят от ограничений сервиса.</span
+            >
+          </div>
+          <div>
+            <dt data-t="slowTitle">При медленном подборе</dt>
+            <dd id="rating-slow">—</dd>
+            <span data-t="slowHelp"
+              >Например, когда способ хранения замедляет проверку.</span
+            >
+          </div>
+          <div>
+            <dt data-t="fastTitle">При быстром подборе</dt>
+            <dd id="rating-fast">—</dd>
+            <span data-t="fastHelp"
+              >Более жёсткий сценарий после утечки базы.</span
+            >
+          </div>
+        </dl>
+      </section>
+      <p class="dialog-note" data-t="plainLimit">
+        Оценка касается подбора пароля. Она не защищает от фишинга, вирусов или
+        повторного использования пароля.
+      </p>
+    </dialog>
+    <noscript
+      ><p class="no-script">
+        Для локальной генерации включите JavaScript. / Enable JavaScript for
+        local generation.
+      </p></noscript
+    >
+    <script src="src/app.js?v=0.2.0-3" defer></script>
+    <script src="src/engineering-effects.js?v=2" defer></script>
+  </body>
+</html>

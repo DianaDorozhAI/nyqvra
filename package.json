@@ -1,0 +1,16 @@
+{
+  "name": "nyqvra",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "dev": "node scripts/serve.mjs",
+    "start": "node scripts/serve.mjs",
+    "preview": "node scripts/serve.mjs --dist",
+    "test": "node --test test/*.test.js",
+    "package": "npm run build && node scripts/package.mjs"
+  },
+  "description": "NYQVRA — offline password generation and explainable threat modeling",
+  "author": "DianaDorozhAI"
+}

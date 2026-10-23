@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 30" fill="none">
+<title>NYQVRA</title>
+<g stroke="#ede7f1" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="square">
+<path d="M3 25V5L37 25V5"/><path d="M48 5L65 15L82 5M65 15V25"/>
+<path d="M100 5H121Q129 5 129 13V17Q129 25 121 25H100Q92 25 92 17V13Q92 5 100 5ZM115 18L132 28"/>
+<path d="M140 5L157 25L174 5"/><path d="M185 25V5H211Q220 5 220 11T211 17H185M207 17L221 25"/>
+<path d="M231 25L246 5L261 25M237 18H255"/>
+</g></svg>

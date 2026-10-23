@@ -1,0 +1,25 @@
+NYQVRA 0.2.0 — автономная версия / Offline version
+
+RU
+1. Распакуйте ВЕСЬ архив в отдельную папку.
+2. Откройте index.html в современном браузере (Edge, Chrome или Firefox).
+3. Интернет не нужен. Устанавливать программы или запускать .exe не требуется.
+4. Если автоматическое копирование запрещено браузером для локальных файлов,
+   выделите показанный пароль и скопируйте его вручную.
+
+Сохраняйте нужные пароли в менеджере паролей: истории и восстановления нет.
+Оценка относится к подбору пароля, а не к безопасности всего аккаунта.
+Приложение не защищает от вредоносных программ и расширений браузера.
+
+Официальные версии: https://github.com/DianaDorozhAI/nyqvra/releases
+Сайт: https://dianadorozhai.github.io/nyqvra/
+Сверяйте адрес автора. Контрольная сумма подтверждает совпадение файла,
+но не является независимым аудитом его безопасности.
+
+EN
+Extract the entire archive, then open index.html in a modern browser.
+No internet, installer, Node.js, account or server is needed.
+If local-file clipboard access is blocked, select and copy the output manually.
+Store passwords in a password manager: there is no history or recovery.
+The rating covers guessing only, not phishing, malware or account security.
+Official downloads: https://github.com/DianaDorozhAI/nyqvra/releases
