@@ -32,7 +32,7 @@
 ### На компьютере, без интернета
 
 1. Откройте [последний релиз](https://github.com/DianaDorozhAI/nyqvra/releases/latest).
-2. В Assets скачайте **`NYQVRA-0.2.0-offline.zip`** — это готовое приложение, не `Source code.zip`.
+2. В Assets скачайте **`NYQVRA-0.2.1-offline.zip`** — это готовое приложение, не `Source code.zip`.
 3. Распакуйте **весь** архив и откройте **`index.html`** в современном браузере.
 
 Установка, Node.js и интернет не нужны. Это автономное веб-приложение, **не Windows `.exe` и не устанавливаемая PWA**. На телефоне проще пользоваться сайтом; автономное открытие файлов зависит от системы и браузера.
@@ -42,7 +42,7 @@
 Рядом с архивом опубликован `SHA256SUMS.txt`. В PowerShell:
 
 ```powershell
-Get-FileHash .\NYQVRA-0.2.0-offline.zip -Algorithm SHA256
+Get-FileHash .\NYQVRA-0.2.1-offline.zip -Algorithm SHA256
 ```
 
 Сравните значение с контрольной суммой официального релиза. Совпадение подтверждает целостность загрузки, но не доказывает отсутствие уязвимостей.
@@ -100,20 +100,22 @@ npm run package
 | `src/engineering-effects.js` | Анимация знака, без доступа к паролю |
 | `test/` | Автоматические проверки |
 
-## Дизайн и кейс
+## Продуктовый кейс
 
-Дымчато-лиловая палитра, прозрачные доспехи, стеклянная панель со скошенными углами и анимированный пространственный знак. Рыцарь неподвижен. Анимация знака учитывает `prefers-reduced-motion`.
+Продукт объединяет локальную генерацию и объяснение стойкости к подбору: пользователь получает не просто случайную строку, а понимание того, что меняют выбранные настройки.
 
-[Краткий продуктовый кейс](docs/CASE-STUDY.md): задача, UX-решения и ограничения без вымышленных метрик или заявлений об аудите.
+[Полный кейс](docs/CASE-STUDY.md): задача, целевая аудитория, альтернативы, выбор границ продукта, пользовательский сценарий, итерации и результаты первого релиза.
 
 ## Авторство и лицензии
 
 Автор — [Диана / DianaDorozhAI](https://github.com/DianaDorozhAI). NYQVRA — рабочее название; проверка товарного знака не проводилась.
 
-**Открытая лицензия на собственный код и визуальные материалы пока не выбрана; MIT для всего проекта не предоставлена.** Публичный репозиторий не следует считать разрешением на любое повторное использование. Сторонние компоненты имеют отдельные лицензии: EFF — CC BY 3.0 US, Tabler Icons — MIT, Manrope — SIL OFL 1.1. Атрибуция и полные уведомления: [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+NYQVRA распространяется по открытой **[лицензии MIT](LICENSE)**. Собственные материалы проекта можно использовать, изменять и распространять, в том числе коммерчески, с сохранением уведомления об авторстве и текста лицензии. Лицензия содержит отказ от гарантий; изменённая копия не должна выдаваться за одобренную автором версию.
+
+MIT охватывает собственный код, документацию и визуальные материалы в пределах прав автора. Сторонние материалы сохраняют свои условия: EFF — CC BY 3.0 US, Tabler Icons — MIT, Manrope — SIL OFL 1.1. Область действия и атрибуция: [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). Лицензия MIT и уведомления включены в офлайн-архив.
 
 ## English
 
 NYQVRA is a browser-local password and passphrase generator with an explainable guessing-resistance estimate. [Try it online](https://dianadorozhai.github.io/nyqvra/) or [download the offline ZIP](https://github.com/DianaDorozhAI/nyqvra/releases/latest), extract everything and open `index.html`. No installer or internet is needed for the downloaded version.
 
-Passwords use Web Crypto and unbiased rejection sampling. The app does not send or persist passwords. Clipboard and process memory have limitations; the rating is not an account-security guarantee. No independent security audit has been performed. The project's own code has no open-source license selected yet; third-party notices remain applicable.
+Passwords use Web Crypto and unbiased rejection sampling. The app does not send or persist passwords. Clipboard and process memory have limitations; the rating is not an account-security guarantee. No independent security audit has been performed. Original project materials are MIT-licensed; third-party notices remain applicable.

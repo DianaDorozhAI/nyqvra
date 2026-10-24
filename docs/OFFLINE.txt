@@ -1,4 +1,4 @@
-NYQVRA 0.2.0 — автономная версия / Offline version
+NYQVRA 0.2.1 — автономная версия / Offline version
 
 RU
 1. Распакуйте ВЕСЬ архив в отдельную папку.
@@ -13,6 +13,7 @@ RU
 
 Официальные версии: https://github.com/DianaDorozhAI/nyqvra/releases
 Сайт: https://dianadorozhai.github.io/nyqvra/
+Открытая лицензия MIT: см. LICENSE. Сторонние лицензии: THIRD_PARTY_NOTICES.md.
 Сверяйте адрес автора. Контрольная сумма подтверждает совпадение файла,
 но не является независимым аудитом его безопасности.
 
@@ -23,3 +24,4 @@ If local-file clipboard access is blocked, select and copy the output manually.
 Store passwords in a password manager: there is no history or recovery.
 The rating covers guessing only, not phishing, malware or account security.
 Official downloads: https://github.com/DianaDorozhAI/nyqvra/releases
+MIT License: see LICENSE. Third-party terms: THIRD_PARTY_NOTICES.md.

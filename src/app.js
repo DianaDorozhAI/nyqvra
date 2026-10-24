@@ -454,7 +454,7 @@ Object.assign(copy.en, {
   ratingScope:
     "An estimate of guessing resistance, not an account protection guarantee.",
 });
-copy.ru.footer = copy.en.footer = 'NYQVRA · 0.2.0';
+copy.ru.footer = copy.en.footer = 'NYQVRA · 0.2.1';
 let lang = "ru",
   secret = "",
   visible = true,

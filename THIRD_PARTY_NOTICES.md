@@ -1,6 +1,6 @@
 # Third-party materials
 
-These notices apply only to the identified materials. They do not license the entire NYQVRA project under MIT.
+NYQVRA's original code, documentation and project-provided visual assets are made available under the MIT License in `LICENSE`, to the extent the author holds the relevant rights. The third-party materials below retain their own licenses; the project's MIT license does not replace those terms. Using the project's name or author's identity must not imply endorsement of a modified version.
 
 ## EFF Large Wordlist (2016)
 

@@ -32,7 +32,7 @@ Hosting still processes normal page/resource requests. “Passwords are not sent
 ### Offline on your computer
 
 1. Open the [latest release](https://github.com/DianaDorozhAI/nyqvra/releases/latest).
-2. Under Assets, download **`NYQVRA-0.2.0-offline.zip`**, not the automatically generated source archive.
+2. Under Assets, download **`NYQVRA-0.2.1-offline.zip`**, not the automatically generated source archive.
 3. Extract the **entire** ZIP, then open **`index.html`** in a modern browser.
 
 No installation, internet or Node.js is needed. This is a standalone local web app, **not a Windows `.exe` or an installable PWA**. On phones, the website is the simpler option; local-file handling varies by OS/browser.
@@ -42,7 +42,7 @@ If clipboard access is blocked for local files, select the result and copy manua
 The release includes `SHA256SUMS.txt`. In PowerShell:
 
 ```powershell
-Get-FileHash .\NYQVRA-0.2.0-offline.zip -Algorithm SHA256
+Get-FileHash .\NYQVRA-0.2.1-offline.zip -Algorithm SHA256
 ```
 
 Compare the result against the official release checksum. A match confirms download integrity, not the absence of vulnerabilities.
@@ -100,14 +100,16 @@ Tests cover unbiased index selection, required classes, entropy, guessing scenar
 | `src/engineering-effects.js` | Brand animation, isolated from passwords |
 | `test/` | Automated checks |
 
-## Design case study
+## Product case study
 
-Smoky-lilac accents, translucent armor, a frosted chamfered panel and an animated spatial knot. The knight stays static. Brand animation respects `prefers-reduced-motion`.
+The product combines local generation with an explanation of guessing resistance: not just a random string, but a way to understand what the selected settings change.
 
-The [case study](docs/CASE-STUDY.en.md) describes the problem, UX decisions and limitations without invented metrics or audit claims.
+The [full case study](docs/CASE-STUDY.en.md) covers the problem, intended audience, alternatives, scope decisions, user journey, iterations and evidence behind the first release.
 
 ## Author and licensing
 
 Created by [Diana / DianaDorozhAI](https://github.com/DianaDorozhAI). NYQVRA is a working name; trademark clearance has not been performed.
 
-**An open-source license for the project's own code and visual materials has not been selected. The project as a whole is not MIT-licensed.** Do not interpret public source availability as unrestricted reuse permission. Third-party materials retain their own licenses: EFF — CC BY 3.0 US, Tabler Icons — MIT, Manrope — SIL OFL 1.1. Attribution and full notices: [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+NYQVRA is available under the **[MIT License](LICENSE)**. You may use, modify and redistribute the original project materials, including commercially, while retaining the copyright and license notice. The license includes a warranty disclaimer and does not imply endorsement of modified versions.
+
+The project's original code, documentation and visual assets are covered to the extent the author holds the relevant rights. Third-party materials retain their own terms: EFF — CC BY 3.0 US, Tabler Icons — MIT, Manrope — SIL OFL 1.1. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for scope and attribution. The offline ZIP includes the MIT license and third-party notices.

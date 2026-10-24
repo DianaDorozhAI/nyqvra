@@ -2,7 +2,7 @@
 
 Start with an issue describing the bug or proposed change. Use dummy passwords in reports and screenshots. Security issues belong in [private reporting](SECURITY.md).
 
-The project has not selected an open-source license for its own code. Discuss contribution and reuse terms with the owner before submitting substantial new work. Third-party materials retain their licenses.
+NYQVRA's original code and documentation are MIT-licensed. By submitting a contribution, you agree to make it available under the same license and confirm you have the rights to contribute it. Third-party materials retain their own licenses; include attribution and license notices for any additions.
 
 For an agreed change:
 
