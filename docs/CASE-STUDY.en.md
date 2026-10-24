@@ -87,7 +87,7 @@ Local generation must be supported by the implementation, not just a headline. N
 
 On the website, generation runs in the browser after the app loads. For autonomous use, the same interface is packaged as HTML and local assets, without requiring a development environment.
 
-One core supports the website and browser offline ZIP. Version 0.3.0 adds a Windows installer preview for a separate need: returning to deliberately saved generations without a cloud account. Saving asks for an account label, comment or URL. A journal shows dates and masked values, with reveal, copy and delete controls. Nothing is saved automatically; the complete journal is encrypted for the current Windows account.
+One core supports the website and browser offline ZIP. Version 0.3.0 adds a Windows application for a separate need: returning to deliberately saved generations without a cloud account. Saving asks for an account label, comment or URL. A journal shows dates and masked values, with reveal, copy and delete controls. Nothing is saved automatically; the complete journal is encrypted for the current Windows account.
 
 ![Local journal with fictional demo accounts](images/nyqvra-windows-journal.png)
 
@@ -120,4 +120,4 @@ The next step is to test the core hypothesis through real tasks: can someone und
 
 Task completion time, journey errors and the ability to explain the assessment in one's own words would be useful measures. These are **planned measurements**, not achieved results. Independent review of generation, modeling and delivery is a separate workstream.
 
-**Case outcome:** a focused generator with an explainable estimate, browser access, an offline ZIP and a Windows preview with optional encrypted saving. The desktop journal is not a replacement for a fully audited password manager: it has no master-password lock, synchronization or portable recovery. The unsigned installer still needs broader installation/uninstallation testing.
+**Case outcome:** a focused generator with an explainable estimate, browser access, an offline ZIP and a Windows application with optional encrypted saving. The desktop journal is not a replacement for a fully audited password manager: it has no master-password lock, synchronization or portable recovery. See [QA.md](QA.md) for technical verification scope.

@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.3.0 — Windows preview and encrypted journal
+## 0.3.0 — Windows app and encrypted journal
 
 - Windows x64 setup wizard in Russian and English, with the existing NYQVRA logo as the application icon.
 - Optional explicit saving with an account label, comment or URL; a separate Journal view with dates, masked values, reveal, copy and delete.
@@ -10,7 +10,7 @@
 - 24 automated tests, desktop smoke coverage and a Windows installer CI workflow.
 - Original visual identity and web/offline browser behavior retained. The web app has no persistent journal.
 
-Preview limitations: unsigned installer; no independent security audit; installation/uninstallation across Windows configurations is not yet fully verified.
+Security and verification scope: see [SECURITY.md](SECURITY.md) and [QA.md](docs/QA.md).
 
 ## 0.2.1 — MIT license and product case study
 

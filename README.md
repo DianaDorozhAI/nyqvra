@@ -26,9 +26,9 @@ NYQVRA connects generation to an explanation of what the settings change. It is 
 
 [Open the app](https://dianadorozhai.github.io/nyqvra/), choose the settings, generate and copy. No installation is required. Save the result in your preferred password manager: NYQVRA has no history or recovery.
 
-### Windows app — local 0.3.0 preview
+### Windows app — 0.3.0
 
-Download **[Windows x64 installer — 0.3.0 preview](https://github.com/DianaDorozhAI/nyqvra/releases/tag/v0.3.0)**. The separate `NYQVRA-0.3.0-Windows-x64-Setup.exe` installs the app with the NYQVRA icon and shortcuts. Choose English or Russian in the setup wizard. This preview has not completed installation/uninstallation testing across Windows configurations.
+Download **[Windows x64 installer — 0.3.0](https://github.com/DianaDorozhAI/nyqvra/releases/tag/v0.3.0)**. The separate `NYQVRA-0.3.0-Windows-x64-Setup.exe` installs the app with the NYQVRA icon and shortcuts. Choose English or Russian in the setup wizard.
 
 Explicitly save a selected result with an account name, comment or link. The Journal tab shows its date and label, with show, copy and delete controls. Values are masked by default; generations are not saved automatically.
 
@@ -50,7 +50,7 @@ Releases include **SHA256SUMS.txt**. Verify the ZIP with `Get-FileHash` on Windo
 
 ## Privacy and the strength estimate
 
-Generation uses **Web Crypto** and unbiased selection. Runtime resources are bundled; there are no application API calls or analytics. The web version does not persist generated results; the Windows preview saves only entries explicitly selected by the user. The website host still processes normal page/resource requests.
+Generation uses **Web Crypto** and unbiased selection. Runtime resources are bundled; there are no application API calls or analytics. The web version does not persist generated results; the Windows app saves only entries explicitly selected by the user. The website host still processes normal page/resource requests.
 
 The rating covers guessing of NYQVRA-generated outputs, not phishing, malware, password reuse or a compromised device/service. The thresholds and assumptions are documented in the [calculation method](docs/SECURITY-MODEL.en.md). **No independent security audit has been performed.** Clipboard history, synchronization and page memory have limitations; see the [security policy](SECURITY.md).
 

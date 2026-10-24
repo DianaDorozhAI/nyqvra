@@ -1,6 +1,6 @@
 # Security policy
 
-NYQVRA 0.3.0 is an early Windows preview alongside the web application. No independent security audit has been performed. Automated tests and browser QA are not certification.
+NYQVRA 0.3.0 provides a Windows application alongside the web application. No independent security audit has been performed. Automated tests and browser QA are not certification.
 
 ## Report a vulnerability
 
@@ -19,7 +19,7 @@ Biased generation, incorrect constrained entropy, invalid strength labels, discl
 - The Windows app offers an optional journal: only explicitly saved entries are persisted, encrypted with Electron safeStorage for the current Windows account. Labels, URLs, dates and secrets are encrypted together. No plaintext fallback is allowed.
 - Windows-account encryption does not provide a separate master-password lock and does not protect against malware running as the same user. There is no cloud sync, export or account/device recovery. Uninstallation preserves journal data; use the journal's delete controls to remove entries. Secure deletion from disk/backups is not guaranteed.
 - The desktop renderer is sandboxed and isolated, loads an explicit bundled resource inventory, blocks network requests and exposes only narrow journal/clipboard actions. These controls do not eliminate implementation or supply-chain risks.
-- The Windows preview installer is unsigned and has not completed install/uninstall testing across Windows configurations. Do not disable platform protections. The host may log ordinary website page/resource requests.
+- The Windows installer is unsigned and has not completed install/uninstall testing across Windows configurations. Do not disable platform protections. The host may log ordinary website page/resource requests.
 - Extensions, malware, compromised delivery, clipboard readers/history/sync and process memory remain risks. Secure memory erasure is not guaranteed.
 - CSP is defense in depth, not protection against a host replacing application code.
 
