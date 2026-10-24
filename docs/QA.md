@@ -1,4 +1,4 @@
-# Release verification — 0.3.0 preview
+# Release verification — 0.3.0
 
 ## Automated checks
 
