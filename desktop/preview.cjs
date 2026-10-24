@@ -1,0 +1,24 @@
+'use strict';
+const { app, safeStorage, Menu } = require('electron');
+const fs = require('node:fs');
+const path = require('node:path');
+const { createWindow } = require('./main.cjs');
+const { Vault } = require('./vault.cjs');
+const root = path.resolve(__dirname, '..');
+fs.mkdirSync(path.join(root, 'work'), { recursive: true });
+app.setPath('userData', fs.mkdtempSync(path.join(root, 'work', 'desktop-preview-')));
+app.whenReady().then(async () => {
+  Menu.setApplicationMenu(null);
+  const vault = new Vault(path.join(app.getPath('userData'), 'journal.enc'), safeStorage);
+  await vault.save({ label: 'Демо · Личная почта', url: 'https://example.com', secret: 'Demo-Mail-Password-Only-123!' });
+  await vault.save({ label: 'Демо · Рабочий аккаунт', url: 'https://example.org', secret: 'Demo-Work-Password-Only-456!' });
+  const win = await createWindow();
+  await new Promise(resolve => setTimeout(resolve, 500));
+  const outputs = path.join(root, 'outputs'); fs.mkdirSync(outputs, { recursive: true });
+  fs.writeFileSync(path.join(outputs, 'NYQVRA-desktop-generator.png'), (await win.webContents.capturePage()).toPNG());
+  await win.webContents.executeJavaScript(`document.querySelector('.journal-tab').click()`);
+  await new Promise(resolve => setTimeout(resolve, 300));
+  fs.writeFileSync(path.join(outputs, 'NYQVRA-desktop-journal.png'), (await win.webContents.capturePage()).toPNG());
+  win.focus();
+}).catch(error => { console.error(error.message); app.exit(1); });
+app.on('window-all-closed', () => app.quit());

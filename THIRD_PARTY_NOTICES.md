@@ -36,3 +36,7 @@ Knight images were generated with OpenAI image generation from the project's sel
 - No functional controls or passwords are baked into these images.
 
 The NYQVRA wordmark and procedural animated knot belong to the project, not Tabler. The animation does not supply cryptographic randomness.
+
+## Windows application runtime
+
+The Windows package additionally bundles Electron and Chromium. Their upstream license and third-party notices are distributed alongside the application (`LICENSE.electron.txt` and `LICENSES.chromium.html`). The root MIT License covers original NYQVRA material, not a relicensing of these dependencies. Build tooling and exact versions are listed in `desktop/package.json` and `desktop/package-lock.json`; development dependencies are not bundled as application dependencies.

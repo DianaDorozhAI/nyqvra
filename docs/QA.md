@@ -1,37 +1,36 @@
-# Release verification — 0.2.0
+# Release verification — 0.3.0 preview
 
-## Automated
+## Automated checks
 
-19 Node.js tests pass locally. They cover random-index rejection, allowed pools, settings, constrained entropy, passphrases/list integrity, guessing calculations, restrictive server routes/headers, exact ZIP/build inventory, SHA-256 integrity and repeatable packaging with the same toolchain.
+24 Node.js tests pass locally. Coverage includes generation, unbiased index selection, constrained entropy, settings, passphrases, guessing models, server restrictions, explicit build/ZIP inventories and checksums, desktop URL/resource policy, encrypted journal persistence, metadata validation, deletion and fail-closed behavior. CI runs the suite on Windows/Linux with Node.js 22/24; workflow results are the authoritative current status.
 
-CI additionally runs the suite on Windows and Linux with Node.js 22 and 24. Its actual result is visible in the Checks workflow; this document does not substitute for a green run.
+The Windows desktop smoke test passes locally with real Windows safeStorage encryption. It verifies:
 
-## Browser evidence
+- generator behavior, loaded assets and RU/EN switching;
+- renderer isolation and blocking remote requests and unlisted resources;
+- saving a hidden result through the actual dialog and displaying a masked journal entry;
+- save/list/reveal/copy/delete IPC actions;
+- absence of the known dummy secret in the encrypted file;
+- clipboard actions using dummy markers only.
 
-- Desktop 1536 × 1024: panel x371.7/y356.3, 860 × 460; no horizontal overflow, images loaded.
-- Default result: 24 characters, full pool; strong label and native icon actions.
-- Settings draft 128 preserves current 24-character result until generation.
-- 128 characters at 390px: field clientHeight209 = scrollHeight209; document clientWidth375 = scrollWidth375.
-- 128 characters at 320px: clientHeight244 = scrollHeight244; document clientWidth305 = scrollWidth305.
-- Scroll check: bottom panel chamfers and generation action remain complete.
-- Eight digits: weak label; explanation shows low resistance in all three scenarios.
-- Twelve full-pool characters: moderate label.
-- Copy confirms success; hide changes visible output to bullets.
-- Format change preserves the result until the next generation.
-- Dialogs use keyboard-accessible native dialog controls; Escape returns to the generator.
-- Tablet 768 × 1024: no horizontal overflow. Background was distanced to restore left-text contrast.
-- Knight transform and animation are `none`; only brand marks animate.
+Unit tests separately reopen an encrypted fixture and confirm unreadable data is not overwritten. Their encryption adapter is test-only; the application uses Windows safeStorage.
 
-## Intentional visual differences
+## Packaging and screenshots
 
-The final interface preserves the user's current lilac direction, new animated knot and icon-only actions. Compared with the earlier lime reference, panel height and content spacing are not pixel-identical. Further visual changes were explicitly paused by the owner; the proposed cleaned background was not applied.
+The Windows x64 NSIS installer builds successfully with the existing NYQVRA logo, RU/EN setup selection and hardened packaged Electron runtime. The installer wizard launches locally. Setup is unsigned; Windows may warn.
 
-## Limits
+The generator and journal screenshots in `docs/images/nyqvra-windows-*.png` were captured from the local desktop preview. Journal entries are explicitly marked as fictional demos, using example.com/example.org. Preview/test scripts and profiles are excluded from the packaged application.
 
-The embedded verification browser allows HTTP/HTTPS only and rejected local `file://` navigation. Direct double-click launch of the extracted HTML was therefore not browser-verified here. The ZIP was extracted and its contents/hashes checked; web rendering is verified separately. No native installer, installable PWA, Safari/Firefox matrix or independent security audit is claimed.
+The browser offline ZIP includes only the declared runtime, instructions, license, notices and checksum manifest. The web runtime contains no desktop journal.
 
-## 0.2.1 follow-up
+## Verification limits
 
-The MIT license is included in the offline ZIP and checked by the packaging test. The product case study was expanded in Russian/English, while README became a shorter product overview. Participation invitations were removed.
+Installation, upgrades and uninstallation across Windows configurations have not completed a full verification matrix. There is no code-signing certificate, independent security audit, tested portable recovery, synchronization or master-password lock. Tests do not establish protection against malware running as the current user.
 
-For wide-screen framing, the original armor image now supplies the foreground rather than the horizontally regenerated version. At desktop aspect ratios of17:10 or wider it uses a static112% viewport-height crop, preserving the asset's aspect ratio and placing more of the shoulder below the frame. The blurred background continuation is unchanged. This is a scoped correction requested after the earlier design pause; no background cleanup image was applied.
+Previous browser checks covered desktop, tablet and narrow layouts, long outputs, copy/hide actions and settings preservation. They do not constitute a fresh cross-browser matrix for this release. Browser file launch remains dependent on browser clipboard restrictions.
+
+## Русский
+
+Локально прошли 24 теста и отдельная проверка настольного приложения с настоящим шифрованием Windows. Проверены генерация, RU/EN, сохранение скрытого результата через диалог, маскирование, показ, копирование и удаление, ограничения ресурсов и отсутствие тестового секрета в открытом виде в файле журнала.
+
+Установщик x64 собран; мастер установки запускается. Скриншоты содержат только вымышленные демозаписи. Полная матрица установки, обновления и удаления ещё не проверена. Цифровой подписи и независимого аудита нет. Веб-версия и браузерный ZIP не сохраняют результаты.

@@ -4,11 +4,11 @@
 
 Generate random passwords and passphrases locally. Understand their resistance to guessing without an account or sending the result to a server.
 
-**[Open NYQVRA](https://dianadorozhai.github.io/nyqvra/)** · **[Download offline](https://github.com/DianaDorozhAI/nyqvra/releases/latest)** · [Product case study](docs/CASE-STUDY.en.md)
+**[Open NYQVRA](https://dianadorozhai.github.io/nyqvra/)** · **[Windows & offline downloads](https://github.com/DianaDorozhAI/nyqvra/releases/tag/v0.3.0)** · [Product case study](docs/CASE-STUDY.en.md)
 
 ![Checks](https://github.com/DianaDorozhAI/nyqvra/actions/workflows/ci.yml/badge.svg)
 
-![NYQVRA main screen](docs/images/nyqvra-desktop.jpg)
+![NYQVRA Windows generator](docs/images/nyqvra-windows-generator.png)
 
 ## What it does
 
@@ -26,9 +26,21 @@ NYQVRA connects generation to an explanation of what the settings change. It is 
 
 [Open the app](https://dianadorozhai.github.io/nyqvra/), choose the settings, generate and copy. No installation is required. Save the result in your preferred password manager: NYQVRA has no history or recovery.
 
-### Offline copy
+### Windows app — local 0.3.0 preview
 
-1. Download **`NYQVRA-0.2.1-offline.zip`** from the [latest release](https://github.com/DianaDorozhAI/nyqvra/releases/latest).
+Download **[Windows x64 installer — 0.3.0 preview](https://github.com/DianaDorozhAI/nyqvra/releases/tag/v0.3.0)**. The separate `NYQVRA-0.3.0-Windows-x64-Setup.exe` installs the app with the NYQVRA icon and shortcuts. Choose English or Russian in the setup wizard. This preview has not completed installation/uninstallation testing across Windows configurations.
+
+Explicitly save a selected result with an account name, comment or link. The Journal tab shows its date and label, with show, copy and delete controls. Values are masked by default; generations are not saved automatically.
+
+The journal stays on this computer, encrypted by Windows for the current user account. There is no cloud synchronization, master password or recovery on another computer. Encryption does not protect against malware running as your user. Uninstalling the app does not automatically delete the journal.
+
+The installer is not signed with a publisher certificate, so Windows may display a warning. Do not disable Windows security features. No independent audit has been performed. The website and browser offline ZIP still do not persist generated results.
+
+![Journal with fictional demo accounts](docs/images/nyqvra-windows-journal.png)
+
+### Browser offline ZIP — 0.3.0
+
+1. Download **`NYQVRA-0.3.0-offline.zip`** from [release 0.3.0](https://github.com/DianaDorozhAI/nyqvra/releases/tag/v0.3.0).
 2. Extract the **entire** archive.
 3. Open **`index.html`** in a modern browser. No internet, Node.js or installer is needed.
 
@@ -38,7 +50,7 @@ Releases include **SHA256SUMS.txt**. Verify the ZIP with `Get-FileHash` on Windo
 
 ## Privacy and the strength estimate
 
-Generation uses **Web Crypto** and unbiased selection. Runtime resources are bundled; there are no application API calls, analytics or persistent password storage. The website host still processes normal page/resource requests.
+Generation uses **Web Crypto** and unbiased selection. Runtime resources are bundled; there are no application API calls or analytics. The web version does not persist generated results; the Windows preview saves only entries explicitly selected by the user. The website host still processes normal page/resource requests.
 
 The rating covers guessing of NYQVRA-generated outputs, not phishing, malware, password reuse or a compromised device/service. The thresholds and assumptions are documented in the [calculation method](docs/SECURITY-MODEL.en.md). **No independent security audit has been performed.** Clipboard history, synchronization and page memory have limitations; see the [security policy](SECURITY.md).
 
@@ -49,7 +61,7 @@ The rating covers guessing of NYQVRA-generated outputs, not phishing, malware, p
 - [Development and tests](docs/DEVELOPMENT.md): local build, project structure and packaging.
 - [Release notes](CHANGELOG.md) and [verification scope](docs/QA.md).
 
-The project has 19 automated checks, run in CI on Windows/Linux with Node.js 22/24. These are regression checks, not security certification.
+The automated suite contains 24 checks, including journal storage and desktop policy tests, run in CI on Windows/Linux with Node.js 22/24. A separate Windows workflow checks generation, RU/EN, UI saving, encryption, copying and deletion, then builds the installer. See workflow results for the current status. These are regression checks, not security certification.
 
 ## License and author
 
