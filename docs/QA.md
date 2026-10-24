@@ -29,3 +29,9 @@ The final interface preserves the user's current lilac direction, new animated k
 ## Limits
 
 The embedded verification browser allows HTTP/HTTPS only and rejected local `file://` navigation. Direct double-click launch of the extracted HTML was therefore not browser-verified here. The ZIP was extracted and its contents/hashes checked; web rendering is verified separately. No native installer, installable PWA, Safari/Firefox matrix or independent security audit is claimed.
+
+## 0.2.1 follow-up
+
+The MIT license is included in the offline ZIP and checked by the packaging test. The product case study was expanded in Russian/English, while README became a shorter product overview. Participation invitations were removed.
+
+For wide-screen framing, the original armor image now supplies the foreground rather than the horizontally regenerated version. At desktop aspect ratios of17:10 or wider it uses a static112% viewport-height crop, preserving the asset's aspect ratio and placing more of the shoulder below the frame. The blurred background continuation is unchanged. This is a scoped correction requested after the earlier design pause; no background cleanup image was applied.

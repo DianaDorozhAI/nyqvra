@@ -6,7 +6,7 @@
 - Included LICENSE in offline downloads and integrity checks.
 - Expanded the Russian and English product case studies: problem, audience, decisions, journey and validation.
 - Replaced implementation-focused README prose with a product overview.
-- No changes to the visual design or generation algorithm.
+- Restored the original armor image for wide-screen foregrounds and adjusted its crop; generation logic is unchanged.
 
 ## 0.2.0 — initial public preview
 
