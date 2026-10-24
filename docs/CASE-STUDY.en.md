@@ -6,9 +6,9 @@ NYQVRA generates random passwords locally and helps people understand how their 
 
 **Product creator: Diana / [DianaDorozhAI](https://github.com/DianaDorozhAI).** The work covered problem definition, alternative review, interaction design, implementation and release preparation. Code and documentation were developed with AI assistance; product and visual decisions were refined through successive iterations.
 
-[Open app](https://dianadorozhai.github.io/nyqvra/) · [Download offline](https://github.com/DianaDorozhAI/nyqvra/releases/latest) · [Source](https://github.com/DianaDorozhAI/nyqvra)
+[Open app](https://dianadorozhai.github.io/nyqvra/) · [Windows & offline downloads](https://github.com/DianaDorozhAI/nyqvra/releases/tag/v0.3.0) · [Source](https://github.com/DianaDorozhAI/nyqvra)
 
-![NYQVRA main screen](images/nyqvra-desktop.jpg)
+![NYQVRA Windows generator](images/nyqvra-windows-generator.png)
 
 ## 1. Problem and product hypothesis
 
@@ -88,6 +88,8 @@ Local generation must be supported by the implementation, not just a headline. N
 On the website, generation runs in the browser after the app loads. For autonomous use, the same interface is packaged as HTML and local assets, without requiring a development environment.
 
 One core supports the website and browser offline ZIP. Version 0.3.0 adds a Windows installer preview for a separate need: returning to deliberately saved generations without a cloud account. Saving asks for an account label, comment or URL. A journal shows dates and masked values, with reveal, copy and delete controls. Nothing is saved automatically; the complete journal is encrypted for the current Windows account.
+
+![Local journal with fictional demo accounts](images/nyqvra-windows-journal.png)
 
 ## 8. Interface priorities
 
