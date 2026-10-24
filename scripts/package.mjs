@@ -18,6 +18,7 @@ const crc32 = b => {
 };
 const entries = runtimeFiles.map(path => [path, readFileSync(path)]);
 entries.push(['START-HERE.txt', readFileSync('docs/OFFLINE.txt')]);
+entries.push(['LICENSE', readFileSync('LICENSE')]);
 entries.push(['THIRD_PARTY_NOTICES.md', readFileSync('THIRD_PARTY_NOTICES.md')]);
 const manifest = entries.map(([p, b]) => `${createHash('sha256').update(b).digest('hex')}  ${p}`).join('\n') + '\n';
 entries.push(['SHA256SUMS.txt', Buffer.from(manifest)]);

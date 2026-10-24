@@ -2706,3 +2706,7 @@ dialog::after {
   .panel-frame::before { display: none; }
   .panel { border: 1px solid CanvasText; }
 }
+/* Keep the original armor anatomy; wide outpaint is only a blurred backdrop. */
+@media (min-width: 1101px) and (min-aspect-ratio: 17/10) {
+  .armor-scene img { height: 112%; max-height: none; width: auto; }
+}

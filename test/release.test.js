@@ -33,7 +33,9 @@ test('build and offline ZIP contain exactly the declared runtime, with valid has
   }
   assert.equal(archive.readUInt32LE(offset), 0x02014b50);
   assert.deepEqual([...entries.keys()].sort(), [...runtimeFiles,
-    'START-HERE.txt', 'THIRD_PARTY_NOTICES.md', 'SHA256SUMS.txt'].sort());
+    'START-HERE.txt', 'LICENSE', 'THIRD_PARTY_NOTICES.md', 'SHA256SUMS.txt'].sort());
+  assert.deepEqual(entries.get('LICENSE'), readFileSync('LICENSE'));
+  assert.match(entries.get('LICENSE').toString(), /^MIT License\n/);
   for (const line of entries.get('SHA256SUMS.txt').toString().trim().split('\n')) {
     const [hash, path] = line.split('  ');
     assert.equal(createHash('sha256').update(entries.get(path)).digest('hex'), hash);

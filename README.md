@@ -2,112 +2,57 @@
 
 **English** · [Русский](README.ru.md)
 
-A browser-local password and passphrase generator with an explainable guessing-resistance estimate.
+Generate random passwords and passphrases locally. Understand their resistance to guessing without an account or sending the result to a server.
 
-[Open website](https://dianadorozhai.github.io/nyqvra/) · [Download offline](https://github.com/DianaDorozhAI/nyqvra/releases/latest) · [Calculation method](docs/SECURITY-MODEL.en.md) · [Security](SECURITY.md)
+**[Open NYQVRA](https://dianadorozhai.github.io/nyqvra/)** · **[Download offline](https://github.com/DianaDorozhAI/nyqvra/releases/latest)** · [Product case study](docs/CASE-STUDY.en.md)
 
 ![Checks](https://github.com/DianaDorozhAI/nyqvra/actions/workflows/ci.yml/badge.svg)
 
-![NYQVRA password generator: smoky-lilac glass panel and static translucent knight](docs/images/nyqvra-desktop.jpg)
+![NYQVRA main screen](docs/images/nyqvra-desktop.jpg)
 
-## Features
+## What it does
 
-- Random passwords, 8–128 characters: uppercase, lowercase, digits and symbols.
-- Passphrases with 4–10 English words from the EFF Large Wordlist.
-- Optional requirement to include at least one character from each selected class.
-- Strong / moderate / weak labels, with an explanation for three guessing scenarios.
-- Copy and show/hide actions, Russian and English interface.
-- No account, password backend, analytics or result history.
+- Generates passwords of **8–128 characters** with selectable letters, digits and symbols.
+- Creates passphrases of **4–10 English words** from the EFF Large Wordlist.
+- Shows a clear strength label and explains it under **three guessing scenarios**.
+- Keeps the current result while you adjust settings; replaces it only when you generate again.
+- Offers copy/show controls and a **Russian/English** interface.
 
-Changing settings does not erase the current result. New settings apply only when you generate again.
+NYQVRA connects generation to an explanation of what the settings change. It is a focused generator, not a password manager, breach-checking service or guarantee of account security.
 
-## Two ways to run
+## Use it
 
-### Online
+### Website
 
-[Open NYQVRA](https://dianadorozhai.github.io/nyqvra/). GitHub Pages serves the app and its assets. Passwords are generated in your browser, not on a server.
+[Open the app](https://dianadorozhai.github.io/nyqvra/), choose the settings, generate and copy. No installation is required. Save the result in your preferred password manager: NYQVRA has no history or recovery.
 
-Hosting still processes normal page/resource requests. “Passwords are not sent” does not mean that visiting the website is invisible to the host. Download the archive for a fully offline launch.
+### Offline copy
 
-### Offline on your computer
+1. Download **`NYQVRA-0.2.1-offline.zip`** from the [latest release](https://github.com/DianaDorozhAI/nyqvra/releases/latest).
+2. Extract the **entire** archive.
+3. Open **`index.html`** in a modern browser. No internet, Node.js or installer is needed.
 
-1. Open the [latest release](https://github.com/DianaDorozhAI/nyqvra/releases/latest).
-2. Under Assets, download **`NYQVRA-0.2.0-offline.zip`**, not the automatically generated source archive.
-3. Extract the **entire** ZIP, then open **`index.html`** in a modern browser.
+This is a local web app, not a Windows executable or installable PWA. If your browser blocks clipboard access for local files, select and copy the output manually. See [offline instructions](docs/OFFLINE.txt).
 
-No installation, internet or Node.js is needed. This is a standalone local web app, **not a Windows `.exe` or an installable PWA**. On phones, the website is the simpler option; local-file handling varies by OS/browser.
+Releases include **SHA256SUMS.txt**. Verify the ZIP with `Get-FileHash` on Windows or `sha256sum` on Linux. A checksum confirms integrity against a trusted reference, not the absence of vulnerabilities.
 
-If clipboard access is blocked for local files, select the result and copy manually. Do not open HTML directly inside the ZIP.
+## Privacy and the strength estimate
 
-The release includes `SHA256SUMS.txt`. In PowerShell:
+Generation uses **Web Crypto** and unbiased selection. Runtime resources are bundled; there are no application API calls, analytics or persistent password storage. The website host still processes normal page/resource requests.
 
-```powershell
-Get-FileHash .\NYQVRA-0.2.0-offline.zip -Algorithm SHA256
-```
+The rating covers guessing of NYQVRA-generated outputs, not phishing, malware, password reuse or a compromised device/service. The thresholds and assumptions are documented in the [calculation method](docs/SECURITY-MODEL.en.md). **No independent security audit has been performed.** Clipboard history, synchronization and page memory have limitations; see the [security policy](SECURITY.md).
 
-Compare the result against the official release checksum. A match confirms download integrity, not the absence of vulnerabilities.
+## Documentation
 
-## What the rating means
+- [Product case study](docs/CASE-STUDY.en.md): problem, audience, alternatives, decisions, journey and evidence.
+- [Calculation method](docs/SECURITY-MODEL.en.md): formulas, scenario rates and thresholds.
+- [Development and tests](docs/DEVELOPMENT.md): local build, project structure and packaging.
+- [Release notes](CHANGELOG.md) and [verification scope](docs/QA.md).
 
-It applies **only to outputs generated by NYQVRA**, not human-chosen passwords. Length, character pool and generation constraints determine the output space. Three scenarios illustrate how the estimate changes with checking speed.
+The project has 19 automated checks, run in CI on Windows/Linux with Node.js 22/24. These are regression checks, not security certification.
 
-The headline label uses the fastest scenario over an illustrative day. Thresholds are a project UI choice, not a certification standard. A short numeric-only result can be weak; not every generated password is labeled strong.
+## License and author
 
-Formulas, rates and thresholds live in the [method document](docs/SECURITY-MODEL.en.md), not the main UI. This is not a test of a specific service, a hardware benchmark or a prediction of when an account will be compromised.
+Created by [Diana / DianaDorozhAI](https://github.com/DianaDorozhAI). Original project materials are available under the **[MIT License](LICENSE)**: use, modify and redistribute them, including commercially, while preserving the copyright and license notice. They are provided without warranty; modified versions do not imply the author's endorsement.
 
-## Security and privacy
-
-- Randomness comes from `crypto.getRandomValues()`. Rejection sampling avoids modulo bias. No insecure fallback generator is used.
-- Requiring every selected class uses whole-candidate rejection, with entropy adjusted for the valid output space.
-- The 7,776-word list, font and icons are bundled. No CDN, external API, telemetry or password storage in localStorage/IndexedDB.
-- CSP disables application network connections with `connect-src 'none'`.
-- Results remain in page memory; guaranteed secure erasure is not available. Copying also puts them in the system clipboard, where other software, history or synchronization may expose them. The app does not clear the clipboard automatically.
-
-**Limitations:** this does not protect against phishing, malware, browser extensions, password reuse or a compromised service. There is no vault, recovery, breach lookup or user-entered password analyzer. Generated passphrases are not cryptocurrency wallet seed phrases.
-
-No independent security audit has been performed. See [SECURITY.md](SECURITY.md) for reporting. Save results in a password manager.
-
-## Development and tests
-
-Node.js 22 or 24 is required. There are no npm or server-framework dependencies.
-
-```sh
-git clone https://github.com/DianaDorozhAI/nyqvra.git
-cd nyqvra
-npm run build
-npm test
-npm run dev
-```
-
-Open `http://127.0.0.1:4173/`. The website build is in `dist/`.
-
-```sh
-npm run preview
-npm run package
-```
-
-Packaging produces the offline ZIP and SHA-256 checksum in `outputs/`, using an [explicit runtime inventory](scripts/runtime-files.mjs). Working files are not swept into the archive. See the [release checklist](docs/RELEASING.md).
-
-Tests cover unbiased index selection, required classes, entropy, guessing scenarios, validation, wordlist integrity, build/ZIP contents and local-server restrictions. CI runs on Windows/Linux with Node.js 22/24. Tests are not a proof of complete correctness or cryptographic certification.
-
-| File | Purpose |
-| --- | --- |
-| `src/password.js` | Generation and entropy |
-| `src/threat-model.js` | Guessing model |
-| `src/settings.js` | Settings validation |
-| `src/main.js` | State, actions and RU/EN copy |
-| `src/engineering.css` | Responsive interface |
-| `src/engineering-effects.js` | Brand animation, isolated from passwords |
-| `test/` | Automated checks |
-
-## Design case study
-
-Smoky-lilac accents, translucent armor, a frosted chamfered panel and an animated spatial knot. The knight stays static. Brand animation respects `prefers-reduced-motion`.
-
-The [case study](docs/CASE-STUDY.en.md) describes the problem, UX decisions and limitations without invented metrics or audit claims.
-
-## Author and licensing
-
-Created by [Diana / DianaDorozhAI](https://github.com/DianaDorozhAI). NYQVRA is a working name; trademark clearance has not been performed.
-
-**An open-source license for the project's own code and visual materials has not been selected. The project as a whole is not MIT-licensed.** Do not interpret public source availability as unrestricted reuse permission. Third-party materials retain their own licenses: EFF — CC BY 3.0 US, Tabler Icons — MIT, Manrope — SIL OFL 1.1. Attribution and full notices: [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+The license covers original code, documentation and visual assets to the extent the author holds the relevant rights. Third-party terms remain separate: **EFF — CC BY 3.0 US; Tabler Icons — MIT; Manrope — SIL OFL 1.1**. Full attribution: [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). LICENSE and notices are included in the offline ZIP.
