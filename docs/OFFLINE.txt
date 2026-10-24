@@ -1,4 +1,4 @@
-NYQVRA 0.2.1 — автономная версия / Offline version
+NYQVRA 0.3.0 — браузерная автономная версия / Browser offline version
 
 RU
 1. Распакуйте ВЕСЬ архив в отдельную папку.

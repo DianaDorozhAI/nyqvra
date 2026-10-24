@@ -6,9 +6,9 @@ NYQVRA generates random passwords locally and helps people understand how their 
 
 **Product creator: Diana / [DianaDorozhAI](https://github.com/DianaDorozhAI).** The work covered problem definition, alternative review, interaction design, implementation and release preparation. Code and documentation were developed with AI assistance; product and visual decisions were refined through successive iterations.
 
-[Open app](https://dianadorozhai.github.io/nyqvra/) · [Download offline](https://github.com/DianaDorozhAI/nyqvra/releases/latest) · [Source](https://github.com/DianaDorozhAI/nyqvra)
+[Open app](https://dianadorozhai.github.io/nyqvra/) · [Windows & offline downloads](https://github.com/DianaDorozhAI/nyqvra/releases/tag/v0.3.0) · [Source](https://github.com/DianaDorozhAI/nyqvra)
 
-![NYQVRA main screen](images/nyqvra-desktop.jpg)
+![NYQVRA Windows generator](images/nyqvra-windows-generator.png)
 
 ## 1. Problem and product hypothesis
 
@@ -87,7 +87,9 @@ Local generation must be supported by the implementation, not just a headline. N
 
 On the website, generation runs in the browser after the app loads. For autonomous use, the same interface is packaged as HTML and local assets, without requiring a development environment.
 
-One core supports both delivery methods, keeping the initial release manageable. A native installer was not added without a separate user need that would justify maintaining it.
+One core supports the website and browser offline ZIP. Version 0.3.0 adds a Windows installer preview for a separate need: returning to deliberately saved generations without a cloud account. Saving asks for an account label, comment or URL. A journal shows dates and masked values, with reveal, copy and delete controls. Nothing is saved automatically; the complete journal is encrypted for the current Windows account.
+
+![Local journal with fictional demo accounts](images/nyqvra-windows-journal.png)
 
 ## 8. Interface priorities
 
@@ -103,7 +105,8 @@ The initial public release delivered the live app, offline ZIP, repository, Russ
 
 Verification includes:
 
-- 19 automated tests covering generation, constraints, calculations, wordlist, builds and packaging;
+- 24 automated tests covering generation, constraints, calculations, wordlist, builds, packaging, journal persistence, fail-closed encryption and desktop resource restrictions;
+- a Windows desktop smoke test covering RU/EN, saving a hidden result through the UI, real Windows encryption, copying and deletion;
 - successful Windows/Linux CI runs with Node.js 22/24;
 - browser checks of primary actions and multiple layout widths;
 - distinct weak, moderate and strong results rather than an always-positive label;
@@ -117,4 +120,4 @@ The next step is to test the core hypothesis through real tasks: can someone und
 
 Task completion time, journey errors and the ability to explain the assessment in one's own words would be useful measures. These are **planned measurements**, not achieved results. Independent review of generation, modeling and delivery is a separate workstream.
 
-**Case outcome:** an “another generator” idea became a bounded, functioning product with an explainable estimate and two delivery methods. Further development should test that value, rather than simply accumulate features.
+**Case outcome:** a focused generator with an explainable estimate, browser access, an offline ZIP and a Windows preview with optional encrypted saving. The desktop journal is not a replacement for a fully audited password manager: it has no master-password lock, synchronization or portable recovery. The unsigned installer still needs broader installation/uninstallation testing.

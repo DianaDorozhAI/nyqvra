@@ -1,0 +1,77 @@
+{
+  "name": "nyqvra-desktop",
+  "version": "0.3.0",
+  "private": true,
+  "description": "NYQVRA offline password generator",
+  "author": "DianaDorozhAI",
+  "license": "MIT",
+  "main": "main.cjs",
+  "scripts": {
+    "start": "electron .",
+    "smoke": "electron smoke.cjs",
+    "package": "electron-builder --win nsis --x64 --publish never"
+  },
+  "devDependencies": {
+    "@electron/fuses": "2.1.3",
+    "electron": "45.0.0",
+    "electron-builder": "26.18.0",
+    "sharp": "0.35.5"
+  },
+  "build": {
+    "appId": "io.github.dianadorozhai.nyqvra",
+    "productName": "NYQVRA",
+    "asar": true,
+    "directories": {
+      "output": "../outputs/windows"
+    },
+    "files": [
+      "main.cjs",
+      "policy.cjs",
+      "vault.cjs",
+      "preload.cjs",
+      "icon.ico",
+      "runtime.json",
+      "app/**/*",
+      "LICENSE",
+      "THIRD_PARTY_NOTICES.md"
+    ],
+    "afterPack": "./after-pack.cjs",
+    "win": {
+      "icon": "icon.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "NYQVRA-${version}-Windows-x64-Setup.${ext}",
+      "signAndEditExecutable": true,
+      "signtoolOptions": {
+        "signingHashAlgorithms": [
+          "sha256"
+        ]
+      }
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowElevation": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "NYQVRA",
+      "installerIcon": "icon.ico",
+      "uninstallerIcon": "icon.ico",
+      "installerLanguages": [
+        "en_US",
+        "ru_RU"
+      ],
+      "displayLanguageSelector": true,
+      "runAfterFinish": false,
+      "deleteAppDataOnUninstall": false,
+      "license": "LICENSE"
+    }
+  }
+}

@@ -454,7 +454,26 @@ Object.assign(copy.en, {
   ratingScope:
     "An estimate of guessing resistance, not an account protection guarantee.",
 });
-copy.ru.footer = copy.en.footer = 'NYQVRA · 0.2.1';
+copy.ru.footer = copy.en.footer = 'NYQVRA · 0.3.0';
+if (window.nyqvraDesktop) {
+  Object.assign(copy.ru, {
+    noStorage: 'Без облака',
+    aboutLocal: 'NYQVRA создаёт результаты локально с помощью Web Crypto. В сеть они не отправляются. Записи сохраняются в журнал только по вашему нажатию.',
+    aboutSave: 'Журнал зашифрован средствами Windows для вашей учётной записи. Доступ к нему есть у приложений, работающих от вашего имени. При утрате учётной записи или переустановке системы восстановление не гарантируется.',
+    copied: 'Скопировано. При необходимости сохраните запись в локальный журнал.',
+    copiedPrevious: 'Предыдущий результат скопирован.',
+  });
+  Object.assign(copy.en, {
+    noStorage: 'No cloud',
+    aboutLocal: 'NYQVRA generates results locally using Web Crypto. Results are never sent online. Journal entries are saved only when you choose Save.',
+    aboutSave: 'Windows encrypts the journal for your user account. Applications running as you can access it. Recovery after losing the account or reinstalling Windows is not guaranteed.',
+    copied: 'Copied. You can also save this entry to the local journal.',
+    copiedPrevious: 'Previous result copied.',
+  });
+  document.addEventListener('click', event => {
+    if (event.target.closest('#desktop-save') && secret) window.nyqvraJournal?.openSave(secret);
+  });
+}
 let lang = "ru",
   secret = "",
   visible = true,
@@ -734,7 +753,8 @@ $("#copy").addEventListener("click", async () => {
   if (!secret) return;
   const snapshot = secret;
   try {
-    await navigator.clipboard.writeText(snapshot);
+    if (window.nyqvraDesktop) await window.nyqvraDesktop.writeText(snapshot);
+    else await navigator.clipboard.writeText(snapshot);
     notice = snapshot === secret ? "copied" : "copiedPrevious";
   } catch {
     notice = "copyError";
